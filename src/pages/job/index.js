@@ -4,7 +4,6 @@ import City from '@C/job/city'
 import JobClass from '@C/job/job'
 import Filter from '@C/job/filter'
 import DefaultList from '@C/job/defaultList'
-import Axios from '@Lib/Axios'
 import {JobStyle} from './styledComponent'
 import { jobData } from '@As/data/jobData'
 const JobContext = React.createContext()
@@ -13,7 +12,8 @@ class Job extends Component {
     constructor(props) {
         super(props)
         this.state = {
-                ...props,
+            definedData: jobData,
+            type: props.type,
             active: {
                 selectActive: {
                   id: 0,
@@ -25,14 +25,7 @@ class Job extends Component {
         this.changeSelect.bind(this)
     }
 
-    componentWillMount() {
-        // Axios.get('/Api_job/index',this,function(){
-        //
-        // })
-    }
-
     render() {
-        console.log(this.state, "filter");
         return (
                 <JobContext.Provider  >
                     <JobStyle>
@@ -58,12 +51,12 @@ class Job extends Component {
     }
     showJobPage() {
         switch (this.state.active.selectActive.id) {
-            case 0 : return <DefaultList/>;
-            case 1 : return <City props={this.state.city}/>;
-            case 2 : return <JobClass props={this.state.job}/>;
-            case 3 : return <Filter props={this.state.filter}/>;
+            case 0 : return <DefaultList props={this.state.type}/>;
+            case 1 : return <City props={this.state.definedData.city}/>;
+            case 2 : return <JobClass props={ { job: this.state.definedData.job, type: this.state.type }}/>;
+            case 3 : return <Filter props={this.state.definedData.filter}/>;
         }
     }
 }
-Job.defaultProps = jobData
+
 export default Job;

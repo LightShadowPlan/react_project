@@ -5,15 +5,15 @@ class Job extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            ...props,
+                ...props,
             active: [0, 0, 0]
         }
     }
 
-    componentWillReceiveProps(param) {
-        this.setState(Provider => {
-            Provider.props = param.props
-        })
+    componentWillMount() {
+        console.log(this.state.props);
+        let type = this.state.props.type === 'shixi' ? 1 : 2
+        this.setState({ active: [type, 0, 0] })
     }
 
     render() {
@@ -23,9 +23,11 @@ class Job extends Component {
                 </JobStyle>
         )
     }
-
+    componentWillReceiveProps(param) {
+        this.setState({ props: param.props })
+    }
     jobClass() {
-        return this.state.props.map((item, index) =>
+        return this.state.props.job.map((item, index) =>
                 <JobClassItem key={index}>
                     <p>{item['job-type']}</p>
                     <JobItemList>

@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import JobList from '@C/commons/jobList'
+import JobList from '../jobList'
 import {JobStyle} from './styledComponent'
 import {Route, Switch, Redirect, withRouter} from 'react-router-dom'
 import { OwnLink, OwnNavLink,  ActiveNavLink} from "@C/commons/router";
-let jobImg = {
-    Img: [
+let definedProps = [
         {
             "jobid": 116825,
             "job_class": 1,
@@ -108,13 +107,13 @@ let jobImg = {
             "ispositive": 1
         }
     ]
-}
+
 
 class HomeJob extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            ...props
+            props: definedProps
         }
     }
 
@@ -122,15 +121,17 @@ class HomeJob extends Component {
         return (
                 <JobStyle>
                     <p className="jobTitle">- 为你推荐的实习职位 -</p>
-                    <JobList/>
+                    <JobList props={ this.state.props }/>
                     <ActiveNavLink tag="p" to="/shixi" className="seeMoreJob">点击查看更多职位 >></ActiveNavLink>
                 </JobStyle>
         )
     }
+    componentWillReceiveProps(param) {
+        this.setState({ props: param.props })
+    }
 
 }
 
-HomeJob.defaultProps = jobImg
 
 export default HomeJob;
 

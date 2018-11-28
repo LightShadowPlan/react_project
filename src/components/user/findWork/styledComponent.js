@@ -22,6 +22,7 @@ export const Tips = styled.div`
            height: 1.07rem;
            border-radius: 0.07rem;
            border: 0.01rem solid #34b9be;
+           color: #34b9be;
        }
        &:last-child{
            box-sizing: border-box;

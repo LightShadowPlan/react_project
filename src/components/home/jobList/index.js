@@ -25,12 +25,12 @@ class JobList extends Component {
     jobList() {
         return this.state.props.map((item) => (
                     <JobItem key={item.jobid}>
-                        <img src={item.companyData.logo} alt=""/>
+                        <img src={item.logo} alt=""/>
                         <div className="rightInfo">
                             <p className="left jobName">{item.title}</p>
                             <p className="right jobTime">{item.addtime}</p>
-                            <p className="left jobCity">{item.comname}[{item.cityName}]</p>
-                            <p className="left jobClass">行业: {item.companyData.industryName}</p>
+                            <p className="left jobCity">{item.comname}[{item.city}]</p>
+                            <p className="left jobClass">行业: {item.industryName}</p>
                             <p className="right jobSalary">{item.salary}</p>
                         </div>
                     </JobItem>

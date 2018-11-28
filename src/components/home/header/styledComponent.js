@@ -13,7 +13,7 @@ export const SwiperWrapper = styled.div`
 `
 export const SlideSwiper = styled.div`
     height: 100%;
-    background: url(${ props => props.item.url}) no-repeat;
+    background: url(${ props => props.item.picurl}) no-repeat;
     background-size: 100% 100%;
     
 `

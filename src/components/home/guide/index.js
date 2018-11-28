@@ -1,34 +1,22 @@
 import React, {Component} from 'react';
 import { GuideStyle, GuideItem } from './styledComponent'
 
-let guideImg = {
-    Img: [
+let definedProps = [
         {
             "id": 254,
-            "picurl": "https://img.shixijob.net/Uploads/u/adimg5a33918279f07.png",
-            "title": "写一份100%通过筛选的简历",
-            "desc": "写一份100%通过筛选的简历",
-            "target": "http://study.163.com/course/introduction/1004727008.htm",
-            "sort": 0,
-            "type": "url"
+            "picurl": "https://img.shixijob.net/Uploads/u/adimg5a33918279f07.png"
         },
         {
             "id": 255,
-            "picurl": "https://img.shixijob.net/Uploads/u/adimg593f5ffbe8892.png",
-            "title": "从面试到offer，就差这5步！",
-            "desc": "从面试到offer，就差这5步！",
-            "target": "http://study.163.com/course/introduction/1004730009.htm",
-            "sort": 0,
-            "type": "url"
+            "picurl": "https://img.shixijob.net/Uploads/u/adimg593f5ffbe8892.png"
         }
     ]
-}
 
 class Guide extends Component {
     constructor(props) {
         super(props)
         this.state = {
-                ...props
+                props: definedProps
         }
     }
     render() {
@@ -38,10 +26,12 @@ class Guide extends Component {
             </GuideStyle>
         )
     }
-
+    componentWillReceiveProps(param) {
+        this.setState({ props: param.props })
+    }
 
     guideList() {
-        return this.state.Img.map((item) => (
+        return this.state.props.map((item) => (
                 <GuideItem key={item.id} src={item.picurl}/>
         ))
 
@@ -49,7 +39,6 @@ class Guide extends Component {
     }
 }
 
-Guide.defaultProps = guideImg
 
 export default Guide;
 

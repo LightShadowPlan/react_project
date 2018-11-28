@@ -4,15 +4,16 @@
   "private": true,
   "dependencies": {
     "antd-mobile": "^2.2.6",
+    "axios": "^0.18.0",
     "babel-plugin-import": "^1.11.0",
+    "http-proxy-middleware": "^0.19.1",
     "react": "^16.6.3",
     "react-app-rewired": "^1.6.2",
     "react-dom": "^16.6.3",
-    "react-router-dom": "^4.3.1",
     "react-redux": "^5.1.1",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
     "styled-components": "^4.1.1",
-    "axios": "^0.18.0",
     "swiper": "^4.4.2"
   },
   "scripts": {
@@ -30,5 +31,4 @@
     "not ie <= 11",
     "not op_mini all"
   ]
-
 }
