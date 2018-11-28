@@ -1,6 +1,6 @@
-import React, {Component, Fragment} from 'react'
+import React, {Component} from 'react'
 import { UserAboutStyle, Top, HeadPhone, Username, Authentication } from './styledComponent'
-import {Route, Switch, Redirect, withRouter} from 'react-router-dom'
+import { ActiveNavLink } from "@C/commons/router";
 class UserAbout extends Component {
     constructor(props) {
         super(props)
@@ -15,8 +15,8 @@ class UserAbout extends Component {
         return (
                 <UserAboutStyle>
                     <Top className="top">
-                        <span className="fa fa-cog"/>
-                        <span className="fa fa-envelope"/>
+                        <ActiveNavLink tag={"span"} to={"/setting"} className="fa fa-cog"/>
+                        <ActiveNavLink tag={"span"} to={"/message"} className="fa fa-envelope"/>
                     </Top>
                     <HeadPhone/>
                     <Username className="username" key={this.state.props.user.id}>{this.state.props.user.username}</Username>

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { ResumeStyle, MyResume, Percentage, ShowPercentage, BgColor, BgPercentage } from './styledComponent'
-import { OwnLink, OwnNavLink,  ActiveNavLink} from "@C/commons/router";
+import { ActiveNavLink} from "@C/commons/router";
 import bgImg from "@As/images/k.png"
 
 

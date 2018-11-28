@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { LogininStyle, Logo } from './styledComponent'
-import { OwnLink, OwnNavLink,  ActiveNavLink} from "@C/commons/router";
+import { ActiveNavLink} from "@C/commons/router";
 class Loginin extends Component {
     constructor(props) {
         super(props)

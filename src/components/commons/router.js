@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, Route, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import styled from 'styled-components'
 
 const OwnLinkItem = (props) => {

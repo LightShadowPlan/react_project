@@ -41,7 +41,6 @@ class Nav extends Component {
         )
     }
     componentWillReceiveProps(param) {
-        console.log(param.props);
         this.setState({ props: param.props })
     }
 

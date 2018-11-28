@@ -11,7 +11,6 @@ class Job extends Component {
     }
 
     componentWillMount() {
-        console.log(this.state.props);
         let type = this.state.props.type === 'shixi' ? 1 : 2
         this.setState({ active: [type, 0, 0] })
     }

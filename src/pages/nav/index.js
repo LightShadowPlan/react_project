@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {NavBottomStyle, NavBottomItem} from './styledComponent'
+import { NavBottomStyle } from './styledComponent'
 import {Route, Switch, Redirect, withRouter} from 'react-router-dom'
-import { OwnLink, OwnNavLink,  ActiveNavLink} from "@C/commons/router";
+import { ActiveNavLink} from "@C/commons/router";
 
 let navIcon = {
     icon: [

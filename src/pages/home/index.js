@@ -24,7 +24,6 @@ class Home extends Component {
     }
 
     render() {
-        console.log(this.state.data,'home');
         return (
                 <HomeStyle className="Home">
                     <Header props={ this.state.data.ad3 }/>
