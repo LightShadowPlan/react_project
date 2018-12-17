@@ -4,7 +4,7 @@ class Shixi extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            type: 'shixi'
+            type: 1
         }
     }
     render() {

@@ -2,61 +2,61 @@ import React, {Component} from 'react';
 import { Get } from '@Lib/axios'
 import { DefaultListStyle } from './styledComponent'
 import JobList from '@C/commons/jobList'
+import Scroll from 'react-bscroll'
+import 'react-bscroll/lib/react-scroll.css'
 
-let definedProps = [
-    {
-        "jobid": 106173,
-        "title": "新房/二手房/商铺销售顾问",
-        "salay": "4000-6000元/月",
-        "job_class": 1,
-        "company_id": 21782,
-        "addtime": "2018-11-27",
-        "ispositive": 1,
-        "apply": 0,
-        "fulltimeString": "至少5天",
-        "education": "本科",
-        "comfullname": "四川链家房地产经纪有限公司",
-        "comname": "链家",
-        "jobClassString": "实习",
-        "isover": 0,
-        "fstatus": "0",
-        "baomingendtime": "2019-03-31",
-        "cityName": "成都",
-        "companyData": {
-            "logo": "https://img.shixijob.net/Uploads/logo/20170807/1cdaab779b4c4af2cba88fe9c93eb17b.jpg",
-            "special": "规模大；范围广；发展迅速；公益",
-            "industryName": "房地产/建筑/建材/工程",
-            "fstatus": "1"
-        }
-    }
-]
 
 class DefaultList extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            props: definedProps,
-            type: props
-
+            type: props.props,
+            pages: 1,
+            pageArr: []
         }
     }
     componentWillMount() {
-        let type = this.state.type === 'shixi'? 1 : 2
-        Get('/api/jobsearch/ajax?search='+type, {}).then((res) => {
-            this.setState({ props: res.data.lists })
-        }, (err) => {
-            console.log(err)
-        })
+        if(sessionStorage['type'+this.state.type]){
+            this.localData = JSON.parse(sessionStorage['type'+this.state.type])
+        } else{
+            this.loadMoreData(this.state.type,this.state.pages)
+        }
     }
     render() {
         return (
-                <DefaultListStyle>
-                    <JobList props={this.state.props}/>
+                <DefaultListStyle className="container">
+                    <Scroll ref='scroll'
+                            pullUpLoad
+                            click={true}
+                            pullUpLoadMoreData={this.loadMoreData}
+                    >
+                        <JobList props={this.state.pagesArr}/>
+                    </Scroll>
                 </DefaultListStyle>
         )
     }
-    componentWillReceiveProps(param) {
-        this.setState({ type: param.type })
+    componentDidMount() {
+        this.scrollObj = this.refs.scroll.getScrollObj()
+        if(this.localData){
+            this.setState( this.localData )
+        }
+    }
+    componentWillUnmount() {
+        sessionStorage['type' + this.state.type] = JSON.stringify(this.state)
+    }
+
+    loadMoreData = () => {
+        let { type, pages, pageArr } = this.state
+        return new Promise( resolve => {
+            Get('/jobsearch/ajax?search=1&s_c='+type+'&page='+pages, {}).then((res) => {
+                let newPagesArr = pageArr
+                newPagesArr.push(...res.data.lists)
+                this.setState({ pages: pages + 1, pagesArr: newPagesArr })
+                resolve()
+            }, (err) => {
+                console.log(err)
+            })
+        })
     }
 }
 

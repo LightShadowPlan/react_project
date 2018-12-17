@@ -49,7 +49,7 @@ export const JobItem = styled.li`
     box-sizing: border-box;
     background: #f0f0f0;
     color: #666;
-    font-size: 24px;
+    font-size: 0.40rem;
     &.active{
         background: #34b9be;
         color: #fff;

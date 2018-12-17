@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import {HeaderSwiper, SwiperContainer, SwiperWrapper, SlideSwiper, SwiperPagination, HeaderSearch} from './styledComponent'
+import {Route, Switch, Redirect, withRouter} from 'react-router-dom'
 import Swiper from 'swiper'
 
 let defaultProps = [
-        {id: 239, picurl: 'https://img.shixijob.net/Uploads/u/adimg5bf25ed20e670.png'},
-        {id: 238, picurl: 'https://img.shixijob.net/Uploads/u/adimg5bf25ef7a3c9c.png'},
-        {id: 236, picurl: 'https://img.shixijob.net/Uploads/u/adimg5be01c3ae0482.jpg'}
+        {id: 239, picurl: 'https://img.shixijob.net/Uploads/u/adimg5bf25ed20e670.png'}
     ]
 
 
@@ -13,7 +12,7 @@ class Header extends Component {
     constructor(props) {
         super(props)
         this.state = {
-                props: defaultProps
+            props: defaultProps
         }
     }
     componentWillReceiveProps(param) {
@@ -28,12 +27,15 @@ class Header extends Component {
                         </SwiperWrapper>
                     </SwiperContainer>
                     <SwiperPagination className="swiper-pagination"/>
-                    <HeaderSearch href="">
+                    <HeaderSearch onClick={this.search}>
                         <span>搜索你感兴趣的职位/公司</span>
                         <i className="fa fa-search"/>
                     </HeaderSearch>
                 </HeaderSwiper>
         )
+    }
+    search() {
+        return <Redirect to={"/shixi"}/>
     }
     swiper = () => {
         new Swiper('.swiper-container', {
@@ -48,9 +50,9 @@ class Header extends Component {
             }
         });
     }
-    componentDidMount() {
-        this.swiper()
-    }
+    // componentDidMount() {
+    //     this.swiper()
+    // }
     componentDidUpdate() {
         this.swiper()
     }

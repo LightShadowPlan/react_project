@@ -4,7 +4,7 @@ class Xiaozhao extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            type: 'xiaozhao'
+            type: 2
         }
     }
     render() {

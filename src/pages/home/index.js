@@ -11,16 +11,21 @@ class Home extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            data: ''
+            data: {
+                "listJob": [],
+                "fourAd": [],
+                "ad3": [],
+                "twoAd": []
+            }
         }
     }
 
     componentWillMount() {
-        Get('/api/Api_job/index', {}).then((res) => {
-            this.setState({ data: res.data })
-        }, (err) => {
-            console.log(err)
-        })
+        if(sessionStorage['data']){
+            this.data = JSON.parse(sessionStorage['data'])
+        } else{
+            this.getData()
+        }
     }
 
     render() {
@@ -34,7 +39,19 @@ class Home extends Component {
         );
     }
     componentDidMount() {
-
+        if(this.data){
+            this.setState({ data: this.data})
+        }
+    }
+    componentWillUnmount() {
+        sessionStorage['data'] = JSON.stringify(this.state.data)
+    }
+    getData() {
+        Get('/Api_job/index', {}).then((res) => {
+            this.setState({ data: res.data })
+        }, (err) => {
+            console.log(err)
+        })
     }
 }
 

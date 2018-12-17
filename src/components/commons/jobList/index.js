@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react';
-import { JobItem} from './styledComponent'
+import { JoblistStyle} from './styledComponent'
+import { ActiveNavLink} from "@C/commons/router";
 
 class JobList extends Component {
     constructor(props) {
@@ -11,9 +12,9 @@ class JobList extends Component {
 
     render() {
         return (
-                <Fragment>
+                <JoblistStyle>
                     {this.jobList()}
-                </Fragment>
+                </JoblistStyle>
 
         )
     }
@@ -23,8 +24,11 @@ class JobList extends Component {
 
 
     jobList() {
+        if( !this.state.props ) {
+            return false
+        }
         return this.state.props.map((item) => (
-                    <JobItem key={item.jobid}>
+                    <ActiveNavLink key={item.jobid} tag={'div'} className={ 'jobitem' } to={'/details?jobid='+item.jobid}>
                         <img src={item.companyData.logo} alt=""/>
                         <div className="rightInfo">
                             <p className="left jobName">{item.title}</p>
@@ -33,7 +37,7 @@ class JobList extends Component {
                             <p className="left jobClass">行业: {item.companyData.industryName}</p>
                             <p className="right jobSalary">{item.salary}</p>
                         </div>
-                    </JobItem>
+                    </ActiveNavLink>
         ))
 
 

@@ -7,7 +7,7 @@ import { UserStyle } from './styledComponent'
 import {Route, Switch, Redirect, withRouter} from 'react-router-dom'
 let user = {
     id: 0,
-    username: "肖香成",
+    username: "XXX",
     grade: 0,
     gradeTitle: "未认证",
     resume: 80,

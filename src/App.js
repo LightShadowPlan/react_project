@@ -3,12 +3,14 @@ import Home from '@Pages/home'
 import Shixi from '@Pages/shixi'
 import Xiaozhao from '@Pages/xiaozhao'
 import User from '@Pages/user'
+import Details from '@Pages/details'
 import Setting from '@Pages/user/setting'
 import Message from '@Pages/user/message'
 import NavBottom from '@Pages/nav'
 import FastLogin from '@Pages/login/fastLogin'
 import Login from '@Pages/login/login'
 import Loginin from '@Pages/login/loginin'
+// import Demo from '@Pages/demo'
 import { Route, Switch, Redirect } from 'react-router-dom'
 
 import { ActiveNavLink } from "@C/commons/router";
@@ -32,9 +34,11 @@ class App extends Component {
               <Route path="/fastLogin" component={FastLogin}/>
               <Route path="/login" component={Login}/>
               <Route path="/loginin" component={Loginin}/>
+              <Route path="/details" component={Details}/>
+              {/*<Route path="/Demo" component={Demo}/>*/}
               {/*<Route path="/language" component={xiaozhao}/>*/}
               {/*<Route path="/about" component={user}/>*/}
-              {/*<Route path="*" component={not_found}/>*/}
+              <Route path="*" component={Home}/>
           </Switch>
           <NavBottom/>
       </div>
